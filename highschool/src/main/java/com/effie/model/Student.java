@@ -60,7 +60,7 @@ public class Student {
 
     @Override
     public boolean equals(Object o) {
-        if(o != this.getClass()){ return false; }
+        if(o.getClass() != this.getClass()){ return false; }
         Student student = (Student) o;
         if( student.getFileNumber() != this.getFileNumber()){return false;}
         return true;

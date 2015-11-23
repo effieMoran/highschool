@@ -39,7 +39,6 @@ public class StudentRepository {
         students.remove(id);
     }
 
-    public void save(Student student){
-        students.put(student.getFileNumber(), student);
+    public void save(Student student){students.put(student.getFileNumber(), student);
     }
 }

@@ -55,15 +55,69 @@ public class StudentController {
         studentRepository.save(student);
     }
 
-
     //Update first name
-    @RequestMapping(value = "/students/", method= RequestMethod.PUT)
-    public void save(@RequestParam int id,@RequestParam String firstname) {
+    @RequestMapping(value = "/students/{id}/firstname/{firstname}", method= RequestMethod.PUT)
+    public void saveFirstName(@PathVariable int id,@PathVariable String firstname) {
         Student student = studentRepository.find(id);
         student.setFirstname(firstname);
         studentRepository.save(student);
     }
 
+    //Update last name
+    @RequestMapping(value = "/students/{id}/lastname/{lastname}", method= RequestMethod.PUT)
+    public void saveLastname(@PathVariable int id, @PathVariable String lastname) {
+        Student student = studentRepository.find(id);
+        student.setFirstname(lastname);
+        studentRepository.save(student);
+    }
 
+    //Update career
+    @RequestMapping(value = "/students/{id}/career/{career}", method= RequestMethod.PUT)
+    public void saveCareer(@PathVariable int id, @PathVariable String career) {
+        Student student = studentRepository.find(id);
+        student.setFirstname(career);
+        studentRepository.save(student);
+    }
+
+    //Update subject
+
+    //See only subjects
+    @RequestMapping(value = "/students/{id}/subjects", method= RequestMethod.GET)
+    public int getSubjects(@PathVariable("id") int id) {
+        Student student = studentRepository.find(id);
+        if (student == null) {
+            throw new RestException(1, "User not found!", "User with id: " + id + " not found in the system");
+        }
+        return student.getSubjectsApproved();
+    }
+
+    //See only first name
+    @RequestMapping(value = "/students/{id}/firstname", method= RequestMethod.GET)
+    public String getFirstName(@PathVariable("id") int id) {
+        Student student = studentRepository.find(id);
+        if (student == null) {
+            throw new RestException(1, "User not found!", "User with id: " + id + " not found in the system");
+        }
+        return student.getFirstname();
+    }
+    //See only last name
+    @RequestMapping(value = "/students/{id}/lastname", method= RequestMethod.GET)
+    public String getLastName(@PathVariable("id") int id) {
+        Student student = studentRepository.find(id);
+        if (student == null) {
+            throw new RestException(1, "User not found!", "User with id: " + id + " not found in the system");
+        }
+        return student.getLastname();
+    }
+
+    //See only career
+    @RequestMapping(value = "/students/{id}/carrer", method= RequestMethod.GET)
+    public String getCareer(@PathVariable("id") int id) {
+        Student student = studentRepository.find(id);
+        if (student == null) {
+            throw new RestException(1, "User not found!", "User with id: " + id + " not found in the system");
+        }
+        return student.getCareer();
+    }
 
 }
